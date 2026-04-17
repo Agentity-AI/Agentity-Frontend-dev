@@ -74,7 +74,7 @@ const [final,setFinal] = useState(false);
 
       <div className="grid grid-cols-3 gap-4">
         {/* Simulation Controls */}
-        <div className="card col-span-1 border border-[#514c4c] bg-[#0f0f0f] rounded-lg py-4 px-8">
+        <div className="card col-span-1 border border-[#514c4c] bg-[#0f0f0f] rounded-lg py-4 px-4">
           <div className="card-body flex gap-2">
             <TestTube className="my-2 mr-2 h-5 w-5 text-[#0d59a5]" />
             <h2 className="card-title my-2">Configure Simulation</h2>
@@ -84,7 +84,7 @@ const [final,setFinal] = useState(false);
             {/* Agent select */}
             <div className="card-body pt-0">
               <select
-                className="select mt-2 mb-4 w-full max-w-xs bg-[#0f0f0f] py-2 focus:outline-none"
+                className="select mt-2 mb-4 w-full text-white max-w-xs bg-[#1c1b24] py-2 focus:outline-none"
                 onChange={handleAgentChange}
                 value={selectedAgentId}
               >
@@ -92,8 +92,8 @@ const [final,setFinal] = useState(false);
                   Select agent
                 </option>
                 {agents?.map((agent) => (
-                  <option key={agent.id} value={agent.id}>
-                    {agent.agent_name}
+                  <option className="text-white" key={agent.id} value={agent.id}>
+                    {agent.agentName}
                   </option>
                 ))}
               </select>
@@ -203,8 +203,7 @@ const [final,setFinal] = useState(false);
             ))}
      </tbody>
     </table>
-
-        </div>
+</div>
       </div>
     </AppLayout>
   );

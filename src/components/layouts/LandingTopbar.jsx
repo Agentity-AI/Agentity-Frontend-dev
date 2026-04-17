@@ -6,7 +6,6 @@ import { authentication } from '../../store/zustant/useZustandHook';
 import { useNavigate } from 'react-router-dom';
 
 function LandingTopbar({dashboardData,loading}) {
-  console.log("Dashboard Data in LandingTopbar:", dashboardData);
 const {dashBoard}=authentication();
   const navigate = useNavigate();
   function toDaboard(){

@@ -74,7 +74,8 @@ function SmartContract() {
               </thead>
               <tbody >
                 {audits&&(audits.map((audit) => (
-                  <AuditTable key={audit.id} contractname={audit.contractName} risklevel={audit.riskLevel} consensusScore={audit.consensusScore} status={audit.status} />
+                  <AuditTable key={audit.id} 
+                   contractname={audit.contractName} risklevel={audit.riskLevel} consensusScore={audit.consensusScore} status={audit.status} />
                 )))}
               </tbody>
             </table>
