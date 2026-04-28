@@ -11,7 +11,6 @@ function DashboardPage() {
   const { dashBoard
   } = authentication();
 
-  // Avoid destructuring from null/undefined
   const {
     Totalagent = 0,
     TotalvarifiedAgent = 0,
@@ -104,8 +103,6 @@ const systemHealth = `${score.toFixed(1)}%`;
   verification={Verification}
   vulnerability={Vulnerability}
 />
-
-
               </span>
             </div>
           </div>

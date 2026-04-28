@@ -1,8 +1,9 @@
 import { Mail, LogOut } from "lucide-react";
 import { authentication } from "../../store/zustant/useZustandHook";
+import { Loading } from "../loading/Loading";
 
 function Topbar() {
-  const { signOut } = authentication();
+  const { signOut,loading } = authentication();
 
   async function handleLogout() {
     try {
@@ -50,7 +51,8 @@ function Topbar() {
           <span className="text-xs font-mono">0x7a9f...3b2c</span>
         </button>
 
-        {/* Logout */}
+      {
+          loading ? <Loading /> : 
         <button
           onClick={handleLogout}
           className={`btn btn-ghost btn-circle bg-transparent text-base-content/60`}
@@ -60,6 +62,7 @@ function Topbar() {
             className={`m-3 bg-transparent text-base-content/60`}
           />
         </button>
+      }
       </div>
     </div>
   );

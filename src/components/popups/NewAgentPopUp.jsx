@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { authentication } from "../../store/zustant/useZustandHook";
 import { Loading } from "../loading/Loading";
-
+import toast from "react-hot-toast";
 function NewAgentPopUp({ onClose, onSubmit }) {
   const { registerAgent, getUserAgents, loading } = authentication();
 
@@ -11,12 +11,9 @@ function NewAgentPopUp({ onClose, onSubmit }) {
     description: "",
     agentType: "",
     apiEndpoint: "",
-    modelName: "",
-    version: "",
-    executionEnvironment: "",
     metadata: {
-      provider: "",
-      tier: "",
+      strategy: "",
+      network: ""
     },
   });
 
@@ -27,21 +24,15 @@ function NewAgentPopUp({ onClose, onSubmit }) {
     }));
   };
 
-  const handleMetadataChange = (e) => {
-    const value = e.target.value;
-
-    try {
-      const parsed = JSON.parse(value);
-      setForm((prev) => ({
-        ...prev,
-        metadata: parsed,
-      }));
-    } catch {
-      // ignore while typing invalid JSON
-    }
+  const handleMetadataChange = (field) => (e) => {
+    setForm((prev) => ({
+      ...prev,
+      metadata: {
+        ...prev.metadata,
+        [field]: e.target.value,
+      },
+    }));
   };
-
-  const metadataString = JSON.stringify(form.metadata, null, 2);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -52,19 +43,22 @@ function NewAgentPopUp({ onClose, onSubmit }) {
       description: form.description,
       agentType: form.agentType,
       apiEndpoint: form.apiEndpoint,
-      modelName: form.modelName,
-      version: form.version,
-      executionEnvironment: form.executionEnvironment,
       metadata: form.metadata,
     };
+    if (!payload.agentName || !payload.publicKey || !payload.agentType|| !payload.apiEndpoint|| !payload.metadata.strategy || !payload.metadata.network
+      || payload.agentName.trim() === "" || !payload.publicKey.trim() || payload.agentType.trim() === "" || payload.apiEndpoint.trim() === "" || payload.metadata.strategy.trim() === "" || payload.metadata.network.trim() === ""
+    ) {
+      toast.error("Please fill in all required fields", {
+        id: "register-agent",
+      });
+      return;
+    }
 
     await registerAgent(payload);
     await getUserAgents();
     onClose?.(true);
     onSubmit?.(payload);
   }
-
-
 
   return (
     <div className="w-full max-w-2xl rounded-2xl border border-white/10 bg-[#0f0f0f] p-6 shadow-2xl text-sm text-gray-200">
@@ -151,7 +145,7 @@ function NewAgentPopUp({ onClose, onSubmit }) {
               </label>
               <input
                 type="text"
-                className="input input-bordered w-full border-white/10 bg-black/40 text-xs font-mono text-gray-100 placeholder:text-gray-500 focus:border-indigo-500 focus:outline-none"
+                className="input px-2 input-bordered w-full border-white/10 bg-black/40 text-xs font-mono text-gray-100 placeholder:text-gray-500 focus:border-indigo-500 focus:outline-none"
                 placeholder="0x42Ec816b0923eEF0c76589627107AdaBb749AB75"
                 value={form.publicKey}
                 onChange={handleChange("publicKey")}
@@ -174,75 +168,40 @@ function NewAgentPopUp({ onClose, onSubmit }) {
           </div>
         </section>
 
-        {/* Runtime section */}
-        <section className="rounded-xl border border-white/10 bg-white/5 p-4">
-          <h3 className="mb-3 text-xs font-semibold uppercase tracking-wide text-gray-400">
-            Runtime
-          </h3>
-
-          <div className="grid gap-4 md:grid-cols-3">
-            {/* Model Name */}
-            <div className="form-control">
-              <label className="mb-1 block text-xs text-gray-400">
-                Model name
-              </label>
-              <input
-                type="text"
-                className="input px-2 input-bordered w-full border-white/10 bg-black/40 text-sm text-gray-100 placeholder:text-gray-500 focus:border-indigo-500 focus:outline-none"
-                placeholder="gpt-4.1"
-                value={form.modelName}
-                onChange={handleChange("modelName")}
-              />
-            </div>
-
-            {/* Version */}
-            <div className="form-control">
-              <label className="mb-1 block text-xs text-gray-400">
-                Version
-              </label>
-              <input
-                type="text"
-                className="input px-2 input-bordered w-full border-white/10 bg-black/40 text-sm text-gray-100 placeholder:text-gray-500 focus:border-indigo-500 focus:outline-none"
-                placeholder="1.0.0"
-                value={form.version}
-                onChange={handleChange("version")}
-              />
-            </div>
-
-            {/* Execution Environment */}
-            <div className="form-control">
-              <label className="mb-1 block text-xs text-gray-400">
-                Execution environment
-              </label>
-              <input
-                type="text"
-                className="input px-2 input-bordered w-full border-white/10 bg-black/40 text-sm text-gray-100 placeholder:text-gray-500 focus:border-indigo-500 focus:outline-none"
-                placeholder="api"
-                value={form.executionEnvironment}
-                onChange={handleChange("executionEnvironment")}
-              />
-            </div>
-          </div>
-        </section>
-
         {/* Metadata section */}
         <section className="rounded-xl border border-white/10 bg-white/5 p-4">
           <h3 className="mb-3 text-xs font-semibold uppercase tracking-wide text-gray-400">
             Metadata
           </h3>
 
-          <div className="form-control">
-            <label className="mb-1 block text-xs text-gray-400">
-              Metadata (JSON)
-            </label>
-            <textarea
-              rows={4}
-              cols={30}
-              className="textarea px-2 textarea-bordered w-full border-white/10 bg-black/40 text-xs font-mono text-gray-100 placeholder:text-gray-500 focus:border-indigo-500 focus:outline-none"
-              placeholder={`{"provider": "openai", "tier": "production"}`}
-              value={metadataString}
-              onChange={handleMetadataChange}
-            />
+          <div className="grid gap-4 md:grid-cols-2">
+            {/* Strategy */}
+            <div className="form-control">
+              <label className="mb-1 block text-xs text-gray-400">
+                Strategy
+              </label>
+              <input
+                type="text"
+                className="input px-2 input-bordered w-full border-white/10 bg-black/40 text-sm text-gray-100 placeholder:text-gray-500 focus:border-indigo-500 focus:outline-none"
+                placeholder="swing"
+                value={form.metadata.strategy}
+                onChange={handleMetadataChange("strategy")}
+              />
+            </div>
+
+            {/* Network */}
+            <div className="form-control">
+              <label className="mb-1 block text-xs text-gray-400">
+                Network
+              </label>
+              <input
+                type="text"
+                className="input px-2 input-bordered w-full border-white/10 bg-black/40 text-sm text-gray-100 placeholder:text-gray-500 focus:border-indigo-500 focus:outline-none"
+                placeholder="avalanche"
+                value={form.metadata.network}
+                onChange={handleMetadataChange("network")}
+              />
+            </div>
           </div>
         </section>
 
@@ -255,12 +214,16 @@ function NewAgentPopUp({ onClose, onSubmit }) {
           >
             Cancel
           </button>
-          {loading?<Loading />:<button
-            type="submit"
-            className="rounded-lg bg-indigo-600 px-4 py-2 text-xs font-semibold text-white hover:bg-indigo-500"
-          >
-            Register Agent
-          </button>}
+          {loading ? (
+            <Loading />
+          ) : (
+            <button
+              type="submit"
+              className="rounded-lg bg-indigo-600 px-4 py-2 text-xs font-semibold text-white hover:bg-indigo-500"
+            >
+              Register Agent
+            </button>
+          )}
         </div>
       </form>
     </div>

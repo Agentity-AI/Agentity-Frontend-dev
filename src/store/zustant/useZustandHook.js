@@ -130,11 +130,11 @@ export const authentication = create((set) => ({
   registerAgent: async (payload) => {
     try {
       set({ loading: true, error: null });
-
+console.log("Registering agent with payload:", payload);
       const res = await api.post("/agents/register", payload);
 
       if (!res || res.status < 200 || res.status >= 300) {
-        toast.error("Agent registration failed, please try again", {
+        toast.error("please check ur input field and try again", {
           id: "register-agent",
         });
         set({ loading: false });

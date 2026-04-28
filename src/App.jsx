@@ -33,7 +33,7 @@ function App() {
       />
 
       <Routes>
-        <Route path="/" element={<LandingPag />} />
+        <Route path="/" element={dashBoard ? <DashboardPage /> : <LandingPag />} />
         <Route
           path="/dashboard"
           element={dashBoard ? <DashboardPage /> : <LandingPag />}
