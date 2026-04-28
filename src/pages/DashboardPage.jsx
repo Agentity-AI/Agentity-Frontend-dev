@@ -3,7 +3,6 @@ import Card from "../components/Card/Card";
 import SecurityCheck from "../components/security-check/SecurityCheck";
 import AppLayout from "../layouts/AppLayouts";
 import TwoLineChart from "../components/chart/TwoLineChart";
-import recentActivities from "../constants/recentActivities";
 import Activity from "../components/activity/Activity";
 import { authentication } from "../store/zustant/useZustandHook";
 
@@ -26,13 +25,8 @@ function DashboardPage() {
   } = chart || {};
 
   const verifiedAgentsRatio = `${TotalvarifiedAgent}/${Totalagent || 1}`;
-const score =Math.ceil(Math.max(
-  0,
-  Math.min(
-    100,
-     TotalvarifiedAgent / (Totalagent || 1) * 100 
-  )
-));
+const score =Math.ceil(
+     TotalvarifiedAgent / (Totalagent || 1) * 100 );
 const riskLabel =
   score >= 80 ? "Low Risk" : score >= 50 ? "Medium Risk" : "High Risk";
 const systemHealth = `${score.toFixed(1)}%`;
@@ -109,7 +103,7 @@ const systemHealth = `${score.toFixed(1)}%`;
         </div>
 
         {/* Recent Activity */}
-        <div className="border-[#514c4c] pb-7 bg-[#0f0f0f] col-span-3 rounded-lg border">
+        {/* <div className="border-[#514c4c] pb-7 bg-[#0f0f0f] col-span-3 rounded-lg border">
           <div className="flex my-2 mx-8">
             <ChartArea className="mr-2 text-[#0d59a5]" size={30} />
             <h1 className="mt-2">Recent Activity</h1>
@@ -119,7 +113,7 @@ const systemHealth = `${score.toFixed(1)}%`;
               <Activity key={activity.id} {...activity} />
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </AppLayout>
   );
