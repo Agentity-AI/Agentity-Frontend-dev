@@ -5,6 +5,6 @@ const navItems = [
   { label: "Simulations", to: "/simulations" },
   {label:"Smart Contarcts Audits",to:"/smart-contracts"},
   {label:"Alerts",to:"/alerts"},
-  { label: "Settings",  to: "/settings" },
+  { label: "SDK & Documantation",  to: "/documentation" },
 ];
 export default navItems;

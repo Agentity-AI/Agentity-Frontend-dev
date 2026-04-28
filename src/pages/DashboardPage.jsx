@@ -45,7 +45,7 @@ const systemHealth = `${score.toFixed(1)}%`;
       {/* Header */}
       <div id="dashboard" className="-mt-5 p-4 rounded-lg">
         <h1 className="text-3xl font-bold mb-1">Dashboard</h1>
-        <p className="text-sm text-base-content/60 text-white">
+        <p className="text-sm text-base-content/60 text-gray-400">
           System overview and activity monitoring
         </p>
       </div>

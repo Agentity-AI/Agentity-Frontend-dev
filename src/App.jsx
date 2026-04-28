@@ -10,7 +10,7 @@ import { authentication } from "./store/zustant/useZustandHook.js";
 import Transaction from "./pages/Transaction.jsx";
 import SmartContract from "./pages/SmartContract.jsx";
 import AlertPage from "./pages/AlertPage.jsx";
-import Setting from "./pages/Setting.jsx";
+import Documentation from "./pages/Documentation.jsx";
 
 function App() {
   const { dashBoard, getDashboard , getTasksHistory} = authentication();
@@ -59,8 +59,8 @@ function App() {
         element={dashBoard ? <AlertPage /> : <LandingPag />}
       />
       <Route
-        path="/settings"
-        element={dashBoard ? <Setting /> : <LandingPag />}
+        path="/documentation"
+        element={dashBoard ? <Documentation /> : <LandingPag />}
       />
       </Routes>
     </>

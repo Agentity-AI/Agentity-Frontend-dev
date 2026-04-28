@@ -28,7 +28,7 @@ console.log("Agents data in AiAgentPage:", agents);
       <div className="mb-6 p-4 rounded-lg flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold mb-1">AI Agent</h1>
-          <p className="text-sm text-base-content/60 text-white">
+          <p className="text-sm text-base-content/60 text-gray-400">
             Register and manage AI agents
           </p>
         </div>

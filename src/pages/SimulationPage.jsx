@@ -67,7 +67,7 @@ const [final,setFinal] = useState(false);
     <AppLayout>
       <div className="mb-6 rounded-lg p-4">
         <h1 className="mb-1 text-3xl font-bold">Simulation Sandbox</h1>
-        <p className="text-sm text-white/60">
+        <p className="text-sm text-white-400 text-base-content/60">
           Test AI agents in containerized scenarios
         </p>
       </div>

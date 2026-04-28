@@ -188,7 +188,16 @@ function SideIcon({ name, color = "currentColor" }) {
           />
         </svg>
       );
-
+      case "SDK & Documantation":
+        return (
+          <svg {...commonProps}>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M9 3h6a3 3 0 013 3v13H9a3 3 0 00-3 3V4zM12 4h6a3 3 0 013 3v13h-6"
+            />
+          </svg>
+        );
     default:
       return null;
   }
