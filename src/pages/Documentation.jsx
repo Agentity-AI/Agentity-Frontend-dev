@@ -10,7 +10,13 @@ function Documentation() {
         <p className="text-sm text-base-content/60 text-gray-4`">
           Integration guides and API reference
         </p>
-      </div></div>
+      </div>
+      <div className="p-4">
+        
+      
+      </div>
+      
+      </div>
     </AppLayout>
 
   )

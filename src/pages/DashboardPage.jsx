@@ -75,12 +75,12 @@ const systemHealth = `${score.toFixed(1)}%`;
       <div className="grid gap-8 grid-cols-3">
         {/* Security Status card */}
         <SecurityCheck
-  score={score}
-  riskLabel={riskLabel}
-  verifiedAgents={verifiedAgentsRatio}
-  activeAlerts={activeSimulation}
-  systemHealth={systemHealth}
-/>
+        score={score}
+         riskLabel={riskLabel}
+         verifiedAgents={verifiedAgentsRatio}
+          activeAlerts={activeSimulation}
+          systemHealth={systemHealth}
+/>    
 
         {/* Trends chart card */}
         <div className="card bg-[#0f0f0f] border border-[#514c4c] col-span-2">

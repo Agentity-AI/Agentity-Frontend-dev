@@ -24,17 +24,13 @@ export const authentication = create((set) => ({
   registerUser: async (payload) => {
     try {
       set({ loading: true, error: null });
-
       const res = await api.post("/auth/register", payload);
-
       if (!res || res.status < 200 || res.status >= 300) {
         alert("Registration failed, please try again");
         set({ loading: false });
         return;
       }
-
       const { dashboard, email, name } = res.data;
-
       set({
         dashBoard: dashboard,
         user: { email, name },
