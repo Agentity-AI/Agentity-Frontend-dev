@@ -52,7 +52,6 @@ function SimulationPage() {
       await runSimulation(payload);
       await getSimulations(); // Refresh simulations after running
       setIsrunning(false);
-      console.log("Simulation run successfully"+ runSimulationData);
     } catch (err) {
       console.error("Simulation failed:", err);
       setIsrunning(false);

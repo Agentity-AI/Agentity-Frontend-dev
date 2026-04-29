@@ -13,7 +13,6 @@ function LandingPage() {
   useEffect(() => {
      getDashboard();
   }, [getDashboard]);
-console.log("Dashboard Data in LandingPage:", dashBoard);
   return (
     <div>
       <LandingTopbar dashboardData={dashBoard} loading={loading}/>

@@ -1,10 +1,9 @@
 const Finished = ({ data }) => {
   const created = new Date(data.createdAt).toLocaleString();
 
-  const isCompleted = data.result.status === 'completed';
 
   return (
-    <div className="h-[500px] rounded-xl border p-4 text-sm text-white/90">
+    <div className="h-125 rounded-xl border p-4 text-sm text-white/90">
       {/* Agent */}
       <div className="mb-2">
         <div className="text-[0.7rem] uppercase tracking-[0.12em] text-white/60">

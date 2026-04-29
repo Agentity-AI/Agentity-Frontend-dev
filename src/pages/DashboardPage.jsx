@@ -33,9 +33,6 @@ const riskLabel =
   score >= 80 ? "Low Risk" : score >= 50 ? "Medium Risk" : "High Risk";
 const systemHealth = `${score.toFixed(1)}%`;
 
-
-  console.log("Dashboard data in DashboardPage:", dashBoard);
-
   return (
     <AppLayout>
       {/* Header */}

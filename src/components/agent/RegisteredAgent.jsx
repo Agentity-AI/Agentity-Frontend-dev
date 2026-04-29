@@ -5,8 +5,11 @@ import ProgressBar from '../progessiveBar/ProgressiveBar'
 import { authentication } from '../../store/zustant/useZustandHook';
 
 function RegisteredAgent({ name, status, lastActive, reputation, type , id}) {
-  const {verifyAgent,loading} = authentication();
-
+  const {verifyAgent,loading,getUserAgents} = authentication();
+async function handleVerify() {
+   await verifyAgent(id);
+    await getUserAgents();
+  }
   return (
    <tr className=" py-2 h-10 w-full border-b border-[#514c4c] px-4 grid grid-cols-6 hover:bg-[#2f2f2f]">
      <td className="text-left text-sm text-base-content/60">{name}</td>
@@ -16,7 +19,7 @@ function RegisteredAgent({ name, status, lastActive, reputation, type , id}) {
      ><Box className="w-4 h-4" /> <span>{status}</span></td>
       <td className="ml-5.5 text-sm text-base-content/60">{lastActive}</td>
       <td className="ml-6.5 text-sm text-base-content/60 text-[#0847bc]">
-        <button className="btn btn-sm btn-outline" onClick={() => verifyAgent(id)}
+        <button className="btn btn-sm btn-outline" onClick={handleVerify}
           disabled={loading}>
           Verify
         </button>

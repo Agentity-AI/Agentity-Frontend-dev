@@ -3,26 +3,15 @@ import AppLayout from "../layouts/AppLayouts";
 import RegisteredAgent from "../components/agent/RegisteredAgent";
 import Modal from "../components/model/Modal";
 import NewAgentPopUp from "../components/popups/NewAgentPopUp";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { authentication } from "../store/zustant/useZustandHook";
 import formatDate  from "../helper/formatDate";
 
 function AiAgent() {
   const [open, setOpen] = useState(false);
-  const { agents, getUserAgents } = authentication();
+  const { agents } = authentication();
 
-  useEffect(() => {
-    const fetchAgents = async () => {
-      try {
-        await getUserAgents();
-      } catch (e) {
-        console.error("Failed to load agents", e);
-      }
-    };
 
-    fetchAgents();
-  }, [getUserAgents]);
-console.log("Agents data in AiAgentPage:", agents);
   return (
     <AppLayout>
       <div className="mb-6 p-4 rounded-lg flex items-center justify-between">

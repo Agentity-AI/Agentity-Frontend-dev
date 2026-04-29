@@ -13,15 +13,15 @@ import AlertPage from "./pages/AlertPage.jsx";
 import Documentation from "./pages/Documentation.jsx";
 
 function App() {
-  const { dashBoard, getDashboard , getTasksHistory} = authentication();
+  const { dashBoard, getDashboard , getUserAgents} = authentication();
 
   useEffect(() => {
     const loadDashboard = async () => {
       await getDashboard();
-      await  getTasksHistory();
+      await await getUserAgents();
     };
     loadDashboard();
-  }, [getDashboard,  getTasksHistory]);
+  }, [getDashboard,  getUserAgents]);
 
   return (
     <>

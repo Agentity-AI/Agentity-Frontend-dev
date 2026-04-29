@@ -100,7 +100,6 @@ export const authentication = create((set) => ({
       set({ loading: true, error: null });
 
       const res = await api.get("/agents/my");
-        console.log("getUserAgents response:", res);
       set({ agents: res.data.items, loading: false });
     } catch (err) {
       set({
@@ -130,7 +129,6 @@ export const authentication = create((set) => ({
   registerAgent: async (payload) => {
     try {
       set({ loading: true, error: null });
-console.log("Registering agent with payload:", payload);
       const res = await api.post("/agents/register", payload);
 
       if (!res || res.status < 200 || res.status >= 300) {
@@ -187,12 +185,10 @@ console.log("Registering agent with payload:", payload);
         toast.error("Agent verification failed, please try again", {
           id: "verify-agent",
         });
-        console.error("Verification failed response:", res);
         set({ loading: false });
         return;
       }
 
-      console.log("Verification successful response:", res);
       toast.success("Agent verified!", { id: "verify-agent" });
       set({ loading: false });
     } catch (err) {
@@ -242,7 +238,7 @@ console.log("Registering agent with payload:", payload);
         id: "run-simulation",
       });
       set({ loading: false ,runSimulationData: res.data});
-      console.log("Simulation run response:", res.data);
+  
     } catch (err) {
       set({
         loading: false,
@@ -390,7 +386,6 @@ console.log("Registering agent with payload:", payload);
       set({ loading: true, error: null });
 
       const res = await api.get("/transactions/history");
-        console.log("getTransactionHistory response:", res);
       if (!res || res.status < 200 || res.status >= 300) {
         set({ loading: false });
         return;
