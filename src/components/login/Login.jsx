@@ -13,8 +13,8 @@ function Login() {
       }
       const { email} = result;
       const user = {
-        email,
-        password: email,
+        email: email.trim().toLowerCase(),
+        password: email.trim().toLowerCase(),
       };
       await loginUser(user);  
       

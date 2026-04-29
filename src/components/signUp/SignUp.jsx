@@ -17,9 +17,9 @@ function SignUp() {
       const { email, displayName } = result;
 
       const user = {
-        email,
-        password: email,
-        name: displayName,
+        email:email.trim().toLowerCase(),
+        password: email.trim().toLowerCase(),
+        name: displayName.trim().toLowerCase(),
       };
 
       await registerUser(user);
