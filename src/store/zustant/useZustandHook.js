@@ -242,6 +242,7 @@ console.log("Registering agent with payload:", payload);
         id: "run-simulation",
       });
       set({ loading: false ,runSimulationData: res.data});
+      console.log("Simulation run response:", res.data);
     } catch (err) {
       set({
         loading: false,

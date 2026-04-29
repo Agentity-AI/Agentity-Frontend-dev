@@ -13,8 +13,7 @@ function SimulationPage() {
   const [amount, setAmount] = useState(10);
   const [tokenIn, setTokenIn] = useState("USDC");
   const [tokenOut, setTokenOut] = useState("HBAR");
-const [final,setFinal] = useState(false);
-  const { getSimulations, runSimulation, simulations, agents, loading } = authentication();
+  const { getSimulations, runSimulation, simulations, agents, loading,runSimulationData } = authentication();
   const [isRunning, setIsrunning] = useState(false);
   useEffect(() => {
     const loadUserAgents = async () => {
@@ -53,7 +52,7 @@ const [final,setFinal] = useState(false);
       await runSimulation(payload);
       await getSimulations(); // Refresh simulations after running
       setIsrunning(false);
-      setFinal(true);
+      console.log("Simulation run successfully"+ runSimulationData);
     } catch (err) {
       console.error("Simulation failed:", err);
       setIsrunning(false);
@@ -181,7 +180,7 @@ const [final,setFinal] = useState(false);
         {/* Simulation View */}
         <div className="card col-span-2 bg-[#0f0f0f] rounded-lg border border-[#514c4c] bg-base-200">
           <div className="card-body">
-           <SimulationState run={isRunning ? "running" : final === "final" ? "final" : "noActive"} />
+           <SimulationState run={isRunning ? "running" : runSimulationData  ? "final" : "noActive"} />
           </div>
         </div>
 

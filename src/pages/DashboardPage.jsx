@@ -1,4 +1,4 @@
-import { ChartArea } from "lucide-react";
+import { ChartArea, LucideTableCellsSplit } from "lucide-react";
 import Card from "../components/Card/Card";
 import SecurityCheck from "../components/security-check/SecurityCheck";
 import AppLayout from "../layouts/AppLayouts";
@@ -22,6 +22,8 @@ function DashboardPage() {
   const {
     Verification = [],
     Vulnerability = [],
+    labels=[],
+
   } = chart || {};
 
   const verifiedAgentsRatio = `${TotalvarifiedAgent}/${Totalagent || 1}`;
@@ -94,6 +96,7 @@ const systemHealth = `${score.toFixed(1)}%`;
             <div className="mt-4 h-64 rounded-xl w-full bg-base-300 border-none flex items-center justify-center">
               <span className="ml-5 text-sm text-base-content/60 w-full h-full flex items-center justify-center">
               <TwoLineChart
+              labels={labels}
   verification={Verification}
   vulnerability={Vulnerability}
 />

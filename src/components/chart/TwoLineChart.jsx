@@ -27,7 +27,7 @@ function TwoLineChart({ labels, verification, vulnerability }) {
       datasets: [
         {
           label: "Verification",
-          data: verification || [],
+          data: verification || [4,5,6,7],
           borderColor: "#0d59a5",
           backgroundColor: "rgba(13, 89, 165, 0.2)",
           tension: 0.3,

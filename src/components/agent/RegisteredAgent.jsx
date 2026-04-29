@@ -10,12 +10,12 @@ function RegisteredAgent({ name, status, lastActive, reputation, type , id}) {
   return (
    <tr className=" py-2 h-10 w-full border-b border-[#514c4c] px-4 grid grid-cols-6 hover:bg-[#2f2f2f]">
      <td className="text-left text-sm text-base-content/60">{name}</td>
-     <td className="text-left text-sm text-base-content/60">{type}</td>
-      <td className="text-left text-sm text-base-content/60 flex"><ProgressBar value={parseInt(reputation)} color="bg-purple-500" /> <span className="ml-2">{reputation}</span></td>
-     <td className={`text-left text-sm  flex gap-1 items-center ${status === 'Verified' ? 'text-green-500' : 'text-yellow-500'}`}
+     <td className="ml-2 text-sm text-base-content/60">{type}</td>
+      <td className="ml-3 text-sm text-base-content/60 flex"><ProgressBar value={parseInt(reputation)}  /> <span className="ml-2">{reputation}</span></td>
+     <td className={`ml-3.5 text-sm  flex gap-1 items-center ${status === 'Verified' ? 'text-green-500' : 'text-yellow-500'}`}
      ><Box className="w-4 h-4" /> <span>{status}</span></td>
-      <td className="text-left text-sm text-base-content/60">{lastActive}</td>
-      <td className="text-left text-sm text-base-content/60 text-[#0847bc]">
+      <td className="ml-5.5 text-sm text-base-content/60">{lastActive}</td>
+      <td className="ml-6.5 text-sm text-base-content/60 text-[#0847bc]">
         <button className="btn btn-sm btn-outline" onClick={() => verifyAgent(id)}
           disabled={loading}>
           Verify
